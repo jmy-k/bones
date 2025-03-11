@@ -1,0 +1,158 @@
+/* hide scroll bar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+
+    overflow-y: scroll;
+
+}
+
+.grid-container {
+    display: grid;
+    /* Set a minimum of 5 columns and 5 rows */
+    grid-template-columns: repeat(5, minmax(100px, 1fr));
+    grid-template-rows: repeat(4, minmax(100px, auto));
+
+    gap: 2px;
+    grid-auto-flow: dense;
+    /* Fills empty spaces efficiently */
+
+    width: 100vw;
+    height: 101vh;
+
+    position: relative;
+
+}
+
+.resize {
+    background: rgba(204, 213, 174, 0.6);
+    background-size: cover;
+    background-position: center;
+
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    text-align: center;
+    cursor: url("hammericon.png"), auto;
+    position: relative;
+
+    transition: background 0.5s ease, border 0.5s ease;
+}
+
+.box1 {
+    grid-column: span 2;
+    grid-row: span 1;
+    background-image: url("abstract/image1.jpg");
+}
+
+.box2 {
+    grid-column: span 1;
+    grid-row: span 2;
+    background-image: url("abstract/image2.jpg");
+}
+
+.box3 {
+    grid-column: span 3;
+    grid-row: span 1;
+    background-image: url("abstract/image3.jpg");
+
+}
+
+.box4 {
+    grid-column: span 1;
+    grid-row: span 1;
+    background-image: url("abstract/image4.jpg");
+
+}
+
+.box5 {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-image: url("abstract/image5.jpg");
+
+}
+
+.box6 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box7 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.box8 {
+    grid-column: span 1;
+    grid-row: span 3;
+}
+
+.box9 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box10 {
+    grid-column: span 3;
+    grid-row: span 2;
+}
+
+.box11 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box12 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.box13 {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+.box14 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box15 {
+    grid-column: span 3;
+    grid-row: span 1;
+}
+
+.box16 {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.box17 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box18 {
+    grid-column: span 2;
+    grid-row: span 3;
+}
+
+.box19 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.box20 {
+    grid-column: span 1;
+    grid-row: span 2;
+}
