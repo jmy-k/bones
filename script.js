@@ -1,14 +1,15 @@
 let boxes = document.querySelectorAll(".resize");
-// Scroll event listeners
+
+
 let lastScrollTop = window.scrollY;
-let isEmptyMode = false; // Track whether images should be hidden
+let isEmptyMode = false; // whether images should be hidden
 
 
-const folders = ["abstract", "sculpture", "contemporary", "photos"]; // Image folders
-let currentIndex = 0; // Start with abstract images
+const folders = ["abstract", "sculpture", "contemporary", "photos"]; // img folders
+let currentIndex = 0; // start with abstract images
 
 boxes.forEach(box => {
-    box.dataset.originalBackground = box.style.background; // Store original background colors
+    box.dataset.originalBackground = box.style.background; // original background colors
 
     box.addEventListener("click", () => {
 
@@ -22,7 +23,7 @@ boxes.forEach(box => {
         grid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
         grid.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
 
-        let usedPositions = new Set(); // Track occupied positions
+        let usedPositions = new Set(); // occupied positions
 
         boxes.forEach(box => {
             let colSpan = Math.random() > 0.5 ? 1 : 2;
@@ -49,14 +50,14 @@ window.addEventListener("scroll", () => {
     let currentScroll = document.documentElement.scrollTop;
 
     if (currentScroll < lastScrollTop) {
-        // Scroll up: remove images, enter "empty mode"
+        // scroll up: remove images, enter "empty mode"
         isEmptyMode = true;
         removeImages();
     } else {
-        // Scroll down: update images immediately, exit "empty mode"
+        // scroll down: update images immediately, exit "empty mode"
         if (isEmptyMode) {
             isEmptyMode = false;
-            updateBackgrounds(); // Ensures the correct folder is used
+            updateBackgrounds(); // correct folder is used to fill in
         }
     }
 
@@ -64,10 +65,10 @@ window.addEventListener("scroll", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Initial background setting
+    // init background setting
     updateBackgrounds();
 
-    // Change folder every 10 seconds
+    // change folder every 10 seconds
     setInterval(checkScrollState, 10000);
 });
 
@@ -75,32 +76,32 @@ document.addEventListener("DOMContentLoaded", () => {
 function updateBackgrounds() {
     let folder = folders[currentIndex];
 
-    // Clear all divs before applying new images
+    // clear divs before applying new images
     boxes.forEach(box => {
-        box.style.background = "none"; // Remove previous backgrounds
+        box.style.background = "none";
         box.style.background = "rgba(170, 170, 170, 0.6)";
     });
 
-    // Shuffle array of boxes
+    // shuffle box array
     let boxesArray = Array.from(boxes);
     for (let i = boxesArray.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [boxesArray[i], boxesArray[j]] = [boxesArray[j], boxesArray[i]];
     }
 
-    // Select 5 random divs to receive new images
+    // 5 random divs to receive new images
     let selectedBoxes = boxesArray.slice(0, 5);
     selectedBoxes.forEach((box, index) => {
         let imageUrl = `${folder}/image${index + 1}.jpg?t=${Date.now()}`;
 
-        // Apply new background
+        // new background
         box.style.background = `url('${imageUrl}') center/cover no-repeat`;
 
-        // Store in dataset for future use
+        // store in dataset for later
         box.dataset.originalBackground = box.style.background;
     });
 
-    // Cycle through folders
+    // cycle through folders
     currentIndex = (currentIndex + 1) % folders.length;
 }
 
@@ -112,14 +113,14 @@ function removeImages() {
     });
 }
 
-// Restore images based on the latest folder, not stored backgrounds
+// restore images based on the latest folder, not stored backgrounds
 function restoreImages() {
     updateBackgrounds();
 }
 
 function checkScrollState() {
     if (!isEmptyMode) {
-        updateBackgrounds(); // Update images only when scrolled down
+        updateBackgrounds(); // update images only when scrolled down
     }
 }
 
