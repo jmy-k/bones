@@ -3,6 +3,10 @@ let boxes = document.querySelectorAll(".resize");
 let lastScrollTop = window.scrollY;
 let isEmptyMode = false; // Track whether images should be hidden
 
+
+const folders = ["abstract", "sculpture", "contemporary", "photos"]; // Image folders
+let currentIndex = 0; // Start with abstract images
+
 boxes.forEach(box => {
     box.dataset.originalBackground = box.style.background; // Store original background colors
 
@@ -67,8 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(checkScrollState, 10000);
 });
 
-const folders = ["abstract", "sculpture", "contemporary"]; // Image folders
-let currentIndex = 0; // Start with abstract images
 
 function updateBackgrounds() {
     let folder = folders[currentIndex];
